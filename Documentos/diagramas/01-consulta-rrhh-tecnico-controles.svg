@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="1710" viewBox="0 0 2800 1710">
+<rect width="100%" height="100%" fill="white"/>
+<text x="45" y="61" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#172033">01 Consulta RRHH · controles y contratos técnicos</text>
+<text x="45" y="106" font-family="Arial,sans-serif" font-size="25" font-weight="400" fill="#64748B">Acme Solutions | Arquitectura de referencia | Cxx conserva la relación con los diagramas funcionales</text>
+<text x="45" y="175" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#172033">Convenciones de lectura y controles que acompañan la topología</text>
+<rect x="45" y="205" width="1305" height="200" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="63" y="244" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">Alcance y fronteras AWS</text>
+<text x="63" y="283" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">La región R y las AZ A/B son parámetros de diseño, no recursos desplegados. IAM es global; KMS, CloudWatch, Bedrock,</text>
+<text x="63" y="313" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">OpenSearch y las funciones son regionales. Los endpoints están en la VPC del cliente; los servicios administrados</text>
+<text x="63" y="343" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">permanecen fuera de ella.</text>
+<rect x="1400" y="205" width="1355" height="200" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1418" y="244" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">Leyenda y criterios AWS</text>
+<text x="1418" y="283" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">Azul continuo: solicitud de datos y respuesta por la misma conexión. Naranja discontinuo: evento o integración administrada. Gris</text>
+<text x="1418" y="313" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">discontinuo: asociación o control. Los iconos y grupos proceden del paquete oficial AWS. No se declara una certificación de</text>
+<text x="1418" y="343" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">cumplimiento.</text>
+<text x="45" y="480" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#172033">Controles técnicos y contratos de acceso</text>
+<rect x="45" y="510" width="2710" height="140" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="554" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Identidad y API</text>
+<text x="470" y="550" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C02/C03: Cognito user-pool authorizer y scopes OAuth en REST API; token vigente. C04 utiliza claims verificados y aplica permisos de documentos en el retriever. CORS se limita al origen del frontend; no sustituye</text>
+<text x="470" y="580" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">autenticación.</text>
+<rect x="45" y="650" width="2710" height="140" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="694" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">VPC y transporte</text>
+<text x="470" y="690" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">SG-Lambda: sin entrada iniciada por clientes; salida TCP 443 a SG-VPCE. SG-VPCE: entrada TCP 443 desde SG-Lambda. DNS support/hostnames activos y DNS privado en los endpoints. Las NACL permiten el retorno. No</text>
+<text x="470" y="720" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">se necesita NAT para los destinos representados.</text>
+<rect x="45" y="790" width="2710" height="140" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="834" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Bedrock</text>
+<text x="470" y="830" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C04 usa bedrock:InvokeModel sobre los modelos autorizados de C05/C07; Converse requiere permisos de inferencia. La política de N01 limita principales y modelos. Inferencia en la región R; no se presupone un perfil de</text>
+<text x="470" y="860" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">inferencia entre regiones.</text>
+<rect x="45" y="930" width="2710" height="140" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="974" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">OpenSearch Serverless</text>
+<text x="470" y="970" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">N02 es de datos Classic; no confundirlo con el endpoint de control com.amazonaws.R.aoss. Política de red: AllowFromPublic=false y SourceVPCEs=[N02]. Además se requieren permisos IAM sobre la colección y una política</text>
+<text x="470" y="1000" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">de acceso a datos por índice.</text>
+<rect x="45" y="1070" width="2710" height="140" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="1114" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Separación de permisos</text>
+<text x="470" y="1110" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">Rol de consulta: aoss:APIAccessAll sobre la colección y política de datos con ReadDocument/DescribeIndex en el índice autorizado. Sin WriteDocument ni cambios de políticas. El backend aplica adicionalmente los filtros</text>
+<text x="470" y="1140" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">documentales.</text>
+<rect x="45" y="1210" width="2710" height="140" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="1254" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Cifrado y registros</text>
+<text x="470" y="1250" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C13: cifrado de la colección con clave KMS administrada por el cliente. C14: registros de ejecución de Lambda/API, métricas y alarmas con retención definida. T01 CloudTrail: auditoría de operaciones compatibles; no</text>
+<text x="470" y="1280" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">equivale a registrar todos los prompts ni las búsquedas.</text>
+<text x="45" y="1407" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#172033">Referencias oficiales consultadas el 7 de noviembre de 2026</text>
+<a href="https://aws.amazon.com/architecture/icons/"><text x="45" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Iconos oficiales</text></a>
+<a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html"><text x="735" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Seguridad Well Architected</text></a>
+<a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html"><text x="1425" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Lambda y VPC</text></a>
+<a href="https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html"><text x="2115" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Bedrock PrivateLink</text></a>
+<a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html"><text x="45" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">OpenSearch plano de datos</text></a>
+<a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html"><text x="735" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">OpenSearch permisos de datos</text></a>
+<a href="https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-accessing-resources-api-gateway-and-lambda.html"><text x="1425" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Cognito y API Gateway</text></a>
+<a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html"><text x="2115" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">WAF y REST API</text></a>
+<text x="45" y="1577" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#64748B">Ampliaciones: N01/N02 detallan la conectividad; T01 añade auditoría y T02 protección WAF al stage REST. Requieren configuración y revisión antes del despliegue.</text>
+</svg>

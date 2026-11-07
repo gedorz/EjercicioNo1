@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="2130" viewBox="0 0 2800 2130">
+<rect width="100%" height="100%" fill="white"/>
+<text x="45" y="61" font-family="Arial,sans-serif" font-size="37" font-weight="700" fill="#172033">02 Ingesta RRHH · controles y contratos técnicos</text>
+<text x="45" y="106" font-family="Arial,sans-serif" font-size="25" font-weight="400" fill="#64748B">Acme Solutions | Arquitectura de referencia | Cxx conserva la relación con los diagramas funcionales</text>
+<text x="45" y="175" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#172033">Convenciones de lectura y controles que acompañan la topología</text>
+<rect x="45" y="205" width="1305" height="200" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="63" y="244" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">Alcance y fronteras AWS</text>
+<text x="63" y="283" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">La región R y las AZ A/B son parámetros de diseño, no recursos desplegados. IAM es global; KMS, CloudWatch, Bedrock,</text>
+<text x="63" y="313" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">OpenSearch y las funciones son regionales. Los endpoints están en la VPC del cliente; los servicios administrados</text>
+<text x="63" y="343" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">permanecen fuera de ella.</text>
+<rect x="1400" y="205" width="1355" height="200" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1418" y="244" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">Leyenda y criterios AWS</text>
+<text x="1418" y="283" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">Azul continuo: solicitud de datos y respuesta por la misma conexión. Naranja discontinuo: evento o integración administrada. Gris</text>
+<text x="1418" y="313" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">discontinuo: asociación o control. Los iconos y grupos proceden del paquete oficial AWS. No se declara una certificación de</text>
+<text x="1418" y="343" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">cumplimiento.</text>
+<text x="45" y="480" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#172033">Controles técnicos y contratos de acceso</text>
+<rect x="45" y="510" width="2710" height="140" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="554" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Identidad y API</text>
+<text x="470" y="550" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">RRHH publica con un rol autorizado. EventBridge puede iniciar solo C09. El rol de C09 invoca C11 y las operaciones OCR necesarias; C11 no administra IAM. T03 es una cola estándar en R: su política permite</text>
+<text x="470" y="580" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">sqs:SendMessage a EventBridge con SourceArn de la regla.</text>
+<rect x="45" y="650" width="2710" height="140" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="694" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">VPC y transporte</text>
+<text x="470" y="690" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">SG-Lambda: sin entrada iniciada por clientes; salida TCP 443 a SG-VPCE. SG-VPCE: entrada TCP 443 desde SG-Lambda. DNS support/hostnames activos y DNS privado en los endpoints. Las NACL permiten el retorno. No</text>
+<text x="470" y="720" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">se necesita NAT para los destinos representados. Para N03, SG-Lambda permite además TCP 443 hacia la prefix list regional de S3; la gateway endpoint policy limita buckets y operaciones.</text>
+<rect x="45" y="790" width="2710" height="140" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="834" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Bedrock</text>
+<text x="470" y="830" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C11 usa bedrock:InvokeModel únicamente para C05. Modelo y dimensión de embeddings coinciden con la consulta. Los documentos se dividen en lotes acotados; los cuerpos grandes se conservan en S3 y el flujo transporta</text>
+<text x="470" y="860" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">referencias.</text>
+<rect x="45" y="930" width="2710" height="140" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="974" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">OpenSearch Serverless</text>
+<text x="470" y="970" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">N02 es de datos Classic; no confundirlo con el endpoint de control com.amazonaws.R.aoss. Política de red: AllowFromPublic=false y SourceVPCEs=[N02]. Además se requieren permisos IAM sobre la colección y una política</text>
+<text x="470" y="1000" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">de acceso a datos por índice.</text>
+<rect x="45" y="1070" width="2710" height="140" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="1114" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Separación de permisos</text>
+<text x="470" y="1110" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">Rol de ingesta: aoss:APIAccessAll sobre la colección y política de datos con WriteDocument/DescribeIndex. CreateIndex y cambios de políticas se reservan al despliegue. s3:GetObject/GetObjectVersion y PutObject solo en</text>
+<text x="470" y="1140" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">prefijos necesarios; kms:Decrypt/GenerateDataKey según operación.</text>
+<rect x="45" y="1210" width="2710" height="140" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="65" y="1254" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#172033">Cifrado y registros</text>
+<text x="470" y="1250" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C08: bloqueo de acceso público, versionado y SSE-KMS; bucket policy exige HTTPS y permite las identidades y accesos de servicio previstos. C13 cifra también C06. C14 alerta de fallos, reintentos y ejecuciones fallidas;</text>
+<text x="470" y="1280" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">T01 audita las operaciones compatibles.</text>
+<text x="45" y="1407" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#172033">Referencias oficiales consultadas el 7 de noviembre de 2026</text>
+<a href="https://aws.amazon.com/architecture/icons/"><text x="45" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Iconos oficiales</text></a>
+<a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html"><text x="735" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Seguridad Well Architected</text></a>
+<a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html"><text x="1425" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Lambda y VPC</text></a>
+<a href="https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html"><text x="2115" y="1457" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">Bedrock PrivateLink</text></a>
+<a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html"><text x="45" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">OpenSearch plano de datos</text></a>
+<a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-data-access.html"><text x="735" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">OpenSearch permisos de datos</text></a>
+<a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html"><text x="1425" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">S3 gateway endpoint</text></a>
+<a href="https://docs.aws.amazon.com/textract/latest/dg/api-async.html"><text x="2115" y="1505" font-family="Arial,sans-serif" font-size="22" font-weight="400" fill="#176B91">OCR asincrono</text></a>
+<rect x="45" y="1625" width="1305" height="230" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="63" y="1664" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">OCR y límites del workflow</text>
+<text x="63" y="1703" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C09 ejecuta Start → Wait → Get mediante SDK, con plazo máximo y paginación NextToken. Cada página acotada se entrega</text>
+<text x="63" y="1733" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">a C11 para guardarla en S3. El estado conserva JobId y URI, no todo el texto; se respeta el límite de 256 KiB por estado.</text>
+<rect x="1400" y="1625" width="1355" height="230" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1418" y="1664" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">Versiones y manejo de fallos</text>
+<text x="1418" y="1703" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">C11 procesa por documento y versión de forma idempotente; controla eventos fuera de orden y publica solo tras validar. C09 debe</text>
+<text x="1418" y="1733" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">serializar las sustituciones de un mismo documento; el mecanismo concreto se define al implementar. Catch registra y alerta fallos</text>
+<text x="1418" y="1763" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">internos; T03 solo recoge fallos de entrega de EventBridge.</text>
+<rect x="45" y="1885" width="2710" height="160" fill="#F4F7FA" stroke="#CBD5E1" stroke-width="2"/>
+<text x="63" y="1924" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#172033">Alcance de las ampliaciones técnicas</text>
+<text x="63" y="1963" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">N01/N02/N03 detallan conectividad. T01 añade auditoría y T03 una cola de errores de entrega. Los identificadores Cxx mantienen los servicios del diagrama original. Este diseño no sustituye una revisión de IAM, pruebas de aislamiento, selección de región y</text>
+<text x="63" y="1993" font-family="Arial,sans-serif" font-size="23" font-weight="400" fill="#172033">evaluación de costes de endpoints antes del despliegue.</text>
+</svg>
